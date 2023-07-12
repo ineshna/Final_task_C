@@ -4,7 +4,7 @@
 // коллекциями, лучше обойтись исключительно массивами.
 
 
-Console.WriteLine("Введите количество строк начадьного массива: ");
+Console.WriteLine("Введите количество строк начального массива: ");
 int userMassSize = int.Parse(Console.ReadLine()!);
 
 
@@ -55,8 +55,43 @@ void PrintMass(string[] mass)
 }
 
 
+
+int ResultMassSize(string[] mass)
+{
+    int resultMassSize = 0;
+    for (int i = 0; i < mass.Length; i++)
+    {
+        if (mass[i].Length <= 3) resultMassSize++;
+    }
+    return resultMassSize;
+}
+
+
+
+
+void FillResultArray(string[] userMass, string[] resultMass)
+{
+    int resultMassElem = 0;
+    for (int i = 0; i < userMass.Length; i++)
+    {
+        if (userMass[i].Length <= 3)
+        {
+            resultMass[resultMassElem] = userMass[i];
+            resultMassElem++;
+        }
+    }
+}
+
+
+
+
+
 string[] userMass = InitUserMass(userMassSize);
 FillMass(userMass);
 Console.WriteLine();
 PrintMass(userMass);
-
+int resMassSize = ResultMassSize(userMass);
+string[] resMass = InitUserMass(resMassSize);
+FillResultArray(userMass, resMass);
+Console.WriteLine();
+PrintMass(resMass);
